@@ -3,6 +3,8 @@
 #play tic tac toe on console
 player = "X"
 Decision = False
+bot = 'Y'
+import random
 
 #filling boards wikth blank dashes
 board = ["-" for board in range(9)]
@@ -43,7 +45,14 @@ def take_input():
 
 def turn():
     print(player + "'s turn")
-    take_input()
+    if bot == 'Y':
+        if player == 'X':
+            take_input()
+        else:
+            if player == 'O':
+              Dumb_bot()
+    else:
+        take_input()
 
 def switch_player():
     global player
@@ -51,6 +60,16 @@ def switch_player():
         player = "O"
     else:
         player ="X"        
+
+def Dumb_bot():
+    move = random.randrange(1,9)
+    while board[move-1] != "-":
+        move = random.randrange(1,9)
+    board[move-1] = player
+
+
+
+
 
 def checkWin():
     #checking horizontal result
@@ -67,10 +86,20 @@ def checkWin():
 
     return False
     
+def AskForPlayer():
+    global bot
+    bot= input("Do you want to play single player: Y/N:  ")
+    bot = bot.upper()
+    while (bot != "Y") and (bot!= "N"):
+        print('invalid input')
+        bot= input("Do you want to play single player: Y/N:  ")
+        bot = bot.upper()
+    print(bot)
 
 #main program flow
 StartGreet()    
 DisplayBoard()
+AskForPlayer()
 
 for count_turn in range(9):
     turn()
