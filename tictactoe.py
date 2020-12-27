@@ -109,7 +109,7 @@ def Minimax(currentBoard, depth, maximizingPlayer, player):
 
 
 def AI(board):
-    previousEval = 0
+    previousEval = -infinity
     bestmove = 2
 
     #to find the spcaes left in the board 
